@@ -16,6 +16,7 @@ class Lab1 {
                 if (c.equals(promotionOrder[pIndex])) {
                     sortedCarInventory[index] = c;
                     index++;
+                    
                 }
             }
         }

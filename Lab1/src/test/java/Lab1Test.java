@@ -19,6 +19,7 @@ public class Lab1Test {
 		String[] expectedRes = new String[] { "mz", "mz", "mz", "mx", "mx", "my", "my", "my" };
 		String[] actualRes = Lab1.sortCarInventory(carInventory, promotionOrder);
 		assertResults(expectedRes, actualRes);
+		
 	}
 
 	@Test
