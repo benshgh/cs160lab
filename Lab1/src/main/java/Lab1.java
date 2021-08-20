@@ -1,5 +1,9 @@
 import java.util.*;
 
+/*
+ * A naive algorithm for sorting an array based on the order of another array
+ * */
+
 class Lab1 {
 
 	// Sort carInventory based on the order in promotionOrder
