@@ -60,7 +60,9 @@ public class NaiveSortTest {
 	public void carInvMoreThan3Cars() {
 		String[] carInventory = new String[] { "mz", "my", "my", "mx", "mz", "mx", "my", "mz" };
 
-		//Student TODO: Add mocking connection here using Mockito
+		//Student TODO: 
+        //Add mocking connection here to make the following assertThat testing work.
+
         assertThat(nSort.sortCarInventory(carInventory, promotionOrder))
                 .hasSize(8)
                 .containsExactly(nSort.getSortedResFromSolution(carInventory, promotionOrder));
