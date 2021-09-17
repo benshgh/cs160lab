@@ -15,7 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.packtpublishing.tddjava.ch02friendships.NaiveSort.sortingSolution;
+import NaiveSort.sortingSolution;
 
 @RunWith(MockitoJUnitRunner.class)
 public class NaiveSortTest {
