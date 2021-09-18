@@ -15,8 +15,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import NaiveSort.sortingSolution;
-
 @RunWith(MockitoJUnitRunner.class)
 public class NaiveSortTest {
 
@@ -26,7 +24,7 @@ public class NaiveSortTest {
     NaiveSort nSort;
 
     @Mock
-    sortingSolution sortSol;
+    NaiveSort.sortingSolution sortSol;
 	
 	void assertResults(String[] expected, String[] actual) {
 		assertTrue(expected.length == actual.length);

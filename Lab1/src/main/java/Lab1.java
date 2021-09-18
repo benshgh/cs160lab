@@ -13,10 +13,6 @@ class Lab1 {
 
 		int index = 0;
 
-		if(sortedCarInventory[0].equals("mx")) {
-			System.out.print("First car in the inventory is mx.");
-		}
-		
 		// Loop for each item in the promotion order
 		for (int pIndex = 0; pIndex < promotionOrder.length; pIndex++) {
 			// loop for each car in the carInventory list
