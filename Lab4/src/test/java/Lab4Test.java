@@ -176,10 +176,10 @@ public class Lab4Test {
 		// inspect and grab the screenshots of jGrasp or debugging perspective of 
 		// showing the emplArray array object.
 
-		String[] emplArray = new String[eLst.size()];
+		Lab4.Employee[] emplArray = new Lab4.Employee[eLst.size()];
 		eLst.toArray(emplArray);
-		for (String es : emplArray)
-			System.out.println(es);
+		for (Lab4.Employee e : emplArray)
+			System.out.println(e.toString());
 		
 	}
 	
