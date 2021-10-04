@@ -99,7 +99,7 @@ public class Lab5Test extends NaiveSortTest {
 		// Lab5.NaiveSortLab5()).sortCarInventory?
 		// If there is a problem, how to fix it?
 		
-		// TODO: change the code to fix the problem
+		// TODO: change wherever the code you need to fix the problem
 		
 		// Include this part of discussion in the lab report
 	}
@@ -151,7 +151,7 @@ public class Lab5Test extends NaiveSortTest {
 		StringBuilder sb_repl = sb.replace(0, 4, "C/C++");
 		
 		// TODO: Use the variable / expression window in the Debugging perspective to see if 
-		// the s_repl object is the same as the s object.
+		// the sb_repl object is the same as the sb object.
 		
 		// Grab screenshots from TODO above to be included as part of your Lab 5 submission.
 		
@@ -178,7 +178,7 @@ public class Lab5Test extends NaiveSortTest {
 		*/ 
 		
 		// TODO: Test with N being 5000, 10000, 15000, ..., 100000
-		// Put measured data into a table, plot the results with (x, y) as (N, elapsed)
+		// Put measured data into a table, plot the results with (x, y) as (N, elapsed time)
 		
 		profileStringConcat();
 		
