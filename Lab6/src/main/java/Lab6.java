@@ -426,7 +426,7 @@ class Lab6 {
 		 *               for students of different majors and levels to graduate. 
 		 * */
 		 
-		Lab6.Student s2 = lab6.new Student(Lab6.StudentLevel.freshman, Lab6.StudentMajor.computersci);
+		Student s2 = lab6.new Student(Lab6.StudentLevel.freshman, Lab6.StudentMajor.computersci);
 		
 		s2.GraduationPath();
 		 
