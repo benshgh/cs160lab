@@ -384,6 +384,7 @@ class Lab6 {
 		 *               what problems the inheritance approach would have?
 		 *               
 		 *               List the design pattern principles from the interface and factory approach.
+		 *               (see lab instructions for the principles discussed)
 		 *               With this approach, what would happen if rules are changed to data structure
 		 *               classes offered to students of different majors and levels. 
 		 * */
@@ -420,6 +421,7 @@ class Lab6 {
 		 *               what problems the inheritance approach would have?
 		 *               
 		 *               List the design pattern principles from the interface and strategy approach.
+		 *               (see lab instructions for the principles discussed)
 		 *               With this approach, what would happen if rules are changed to the learning paths 
 		 *               for students of different majors and levels to graduate. 
 		 * */
