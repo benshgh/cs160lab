@@ -1,7 +1,7 @@
 import java.util.*;
 
 /*
- * Lab 6
+ * Lab 6 - Basic OO Design Principles & Patterns 
  * */
 
 class Lab6 {
@@ -221,10 +221,11 @@ class Lab6 {
 	public class MiscPathBehavior extends LearningPathBehaviorBase
 	  implements ILearningPathBehavior {
 
-	public MiscPathBehavior(String pb) {
-		behavior = pb;
-	}
-}	
+		public MiscPathBehavior(String pb) {
+			behavior = pb;
+		}
+	}	
+	
 	public class Registrar implements IRegistrar {
 		// Set graduation path (strategy) based on student major and level
 		// Set course path for each required learning category 
