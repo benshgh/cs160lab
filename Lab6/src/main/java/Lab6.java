@@ -169,17 +169,20 @@ class Lab6 {
 		public void GraduationPath() {
 			IRegistrar r = new Registrar();
 			
-			Student s = new Student(StudentLevel.freshman, StudentMajor.computersci);
-			
-			r.SetGraduationPath(s);
+			r.SetGraduationPath(this);
 			
 			System.out.println("Student Graudation Path: ");
 			
-			System.out.println("GE - " + gePath.GetPathBehavior());
-			System.out.println("Lower Division - " + lowerDivisionPath.GetPathBehavior());
-			System.out.println("Upper Division - " + upperDivisionPath.GetPathBehavior());
-			System.out.println("Math - " + mathPath.GetPathBehavior());
-			System.out.println("Miscellaneous - " + miscPath.GetPathBehavior());
+			if(gePath != null)
+				System.out.println("GE - " + gePath.GetPathBehavior());
+			if(lowerDivisionPath != null)
+				System.out.println("Lower Division - " + lowerDivisionPath.GetPathBehavior());
+			if(upperDivisionPath != null)
+				System.out.println("Upper Division - " + upperDivisionPath.GetPathBehavior());
+			if(mathPath != null)
+				System.out.println("Math - " + mathPath.GetPathBehavior());
+			if(miscPath != null)
+				System.out.println("Miscellaneous - " + miscPath.GetPathBehavior());
 		}
 	}
 	
@@ -261,23 +264,40 @@ class Lab6 {
 					switch (s_status.GetStudentMajor())
 			        {
 				        case computersci:
-							gp.SetGEPathBehavior(new GEPathBehavior("CS GE Behavior"));
+							// Run-time injection of the graduation path behaviors.
+				        	// Dependency injections
+				        	gp.SetGEPathBehavior(new GEPathBehavior("CS GE Behavior"));
 							gp.SetLowerDivisionPathBehavior(new LowerDivisionPathBehavior("CS Lower Behavior"));
 							gp.SetUpperDivisionPathBehavior(new LowerDivisionPathBehavior("CS Upper Behavior"));
 							gp.SetMathPathBehavior(new LowerDivisionPathBehavior("CS Math Behavior"));
 							gp.SetMiscPathBehavior(new LowerDivisionPathBehavior("CS Miscellaneous Behavior"));
+							break;
 			            case computereng:
 			                // TODO: implement similar Path behaviors for computer engineering students
-
+			            	break;	
 			            case biology:
 			            	// TODO: implement similar Path behaviors for biology students
+			            	break;
 			            case math:
 			            	// TODO: implement similar Path behaviors for math students
+			            	break;
 			            case politicalsci:
 			            	// TODO: implement similar Path behaviors for political science students
+			            	break;
 			            default:
 			                throw new UnsupportedOperationException();
 			        }
+					
+					// TODO: add some setting the path behaviors (GE, LowerDivision, etc.) based on 
+					//       student level
+					
+					// TODO: add setting the path behaviors (GE, LowerDivision, etc.) based on  
+					//       a combination of student major and level
+					
+					// Hint: create new PathBehavior classes implementing ILearningPathBehaviorimplementing  
+					// and extending LearningPathBehaviorBase
+                    // and set (inject) instances of those behaviors to the student
+					
 				}
 				
 			}
@@ -326,6 +346,10 @@ class Lab6 {
 	            default:
 	                throw new UnsupportedOperationException();
 	        }
+	        
+	        // TODO: change above implementation to return Data Structure instance 
+	        //		 based on a combination of student major and level
+	        //		 and write test code in main method to test.
 	    }
 	}
 	
@@ -364,6 +388,12 @@ class Lab6 {
 		 *               classes offered to students of different majors and levels. 
 		 * */
 		
+		Lab6 lab6 = new Lab6();
+		Student s1 = lab6.new Student(Lab6.StudentLevel.freshman, Lab6.StudentMajor.computersci);
+		
+		CSCourseFactory cf = lab6.new CSCourseFactory();
+		System.out.println(cf.GetDataStructureCourse(s1).GetCourseName());
+		
 		
 		/**
 		 * TODO: Strategy coding exercises and reflections
@@ -393,6 +423,10 @@ class Lab6 {
 		 *               With this approach, what would happen if rules are changed to the learning paths 
 		 *               for students of different majors and levels to graduate. 
 		 * */
+		 
+		Lab6.Student s2 = lab6.new Student(Lab6.StudentLevel.freshman, Lab6.StudentMajor.computersci);
+		
+		s2.GraduationPath();
 		 
 	}
 	
