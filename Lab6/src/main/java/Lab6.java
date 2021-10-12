@@ -106,6 +106,7 @@ class Lab6 {
 	public class CS310 extends DSCourseBase 
 	                   implements IDataStructure
 	{
+		@Override
 	    public String GetCourseName() {
 	    	return "CS310";
 	    }
@@ -114,6 +115,7 @@ class Lab6 {
 	public class CS210 extends DSCourseBase
 					   implements IDataStructure
 	{
+		@Override
 	    public String GetCourseName() {
 	    	return "CS210";
 	    }
@@ -122,6 +124,7 @@ class Lab6 {
 	public class CS496 extends DSCourseBase
 					   implements IDataStructure
 	{
+		@Override
 	    public String GetCourseName() {
 	    	return "CS496";
 	    }
@@ -141,27 +144,77 @@ class Lab6 {
 			s_Major = m;
 		}
 		
+		@Override
+		public String toString() {
+			String sLevel = "";
+			String sMajor = "";
+			
+			switch(s_Level) {
+				case freshman:
+					sLevel = "freshman";
+					break;
+				case sophomore:
+					sLevel = "freshman";
+					break;
+				case junior:
+					sLevel = "junior";
+					break;
+				case senior:
+					sLevel = "senior";
+			}
+			
+			switch(s_Major) {
+				case computersci:
+					sMajor = "computersci";
+					break;
+				case computereng:
+					sMajor = "computereng";
+					break;
+				case biology:
+					sMajor = "biology";
+					break;
+				case math:
+					sMajor = "math";
+					break;
+				case politicalsci:
+					sMajor = "politicalsci";
+			}
+			
+			return "Major = " + sMajor + ", Level = " + sLevel;
+		}
+		
+		@Override
 		public StudentLevel GetStudentLevel() {
 			return s_Level;
 		}
 		
+		@Override
 		public StudentMajor GetStudentMajor() {
 			return s_Major;
 		}
 		
 		// Set the Graduation path for each learning category
+		@Override
 		public void SetGEPathBehavior(ILearningPathBehavior lpb) {
 			gePath = lpb;
 		}
+		
+		@Override
 		public void SetLowerDivisionPathBehavior(ILearningPathBehavior lpb) {
 			lowerDivisionPath = lpb;
 		}
+		
+		@Override
 		public void SetUpperDivisionPathBehavior(ILearningPathBehavior lpb) {
 			upperDivisionPath = lpb;
 		}
+		
+		@Override
 		public void SetMathPathBehavior(ILearningPathBehavior lpb) {
 			mathPath = lpb;
 		}
+		
+		@Override
 		public void SetMiscPathBehavior(ILearningPathBehavior lpb) {
 			miscPath = lpb;
 		}
@@ -231,7 +284,7 @@ class Lab6 {
 	}
 	
 	public class UpperDivisionPathBehavior extends LearningPathBehaviorBase
-	   implements ILearningPathBehavior {
+	   									   implements ILearningPathBehavior {
 
 		public UpperDivisionPathBehavior(String pb) {
 			behavior = pb;
@@ -239,7 +292,7 @@ class Lab6 {
 	}
 
 	public class MathPathBehavior extends LearningPathBehaviorBase
-		  implements ILearningPathBehavior {
+		  						  implements ILearningPathBehavior {
 
 		public MathPathBehavior(String pb) {
 			behavior = pb;
@@ -247,7 +300,7 @@ class Lab6 {
 	}
 	
 	public class MiscPathBehavior extends LearningPathBehaviorBase
-	  implements ILearningPathBehavior {
+								  implements ILearningPathBehavior {
 
 		public MiscPathBehavior(String pb) {
 			behavior = pb;
@@ -257,6 +310,7 @@ class Lab6 {
 	public class Registrar implements IRegistrar {
 		// Set graduation path (strategy) based on student major and level
 		// Set course path for each required learning category 
+		@Override
 		public void SetGraduationPath(IStudentStatus s_status) {
 			if (s_status != null) {
 				IGraduationPath gp = (IGraduationPath) s_status;
@@ -393,6 +447,7 @@ class Lab6 {
 		Student s1 = lab6.new Student(Lab6.StudentLevel.freshman, Lab6.StudentMajor.computersci);
 		
 		CSCourseFactory cf = lab6.new CSCourseFactory();
+		System.out.println("\n" + s1);
 		System.out.println(cf.GetDataStructureCourse(s1).GetCourseName());
 		
 		
@@ -427,6 +482,8 @@ class Lab6 {
 		 * */
 		 
 		Student s2 = lab6.new Student(Lab6.StudentLevel.freshman, Lab6.StudentMajor.computersci);
+		
+		System.out.println("\n" + s1);
 		
 		s2.GraduationPath();
 		 
