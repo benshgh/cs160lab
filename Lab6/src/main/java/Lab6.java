@@ -2,6 +2,31 @@ import java.util.*;
 
 /*
  * Lab 6 - Basic OO Design Principles & Patterns 
+ * 
+ * In this Lab, we will learn some of the OO design principles to accomplish the 
+ * above-mentioned objectives and demonstrate those design principles by introducing 
+ * two basic OO Design Patterns – Factory (Creational) pattern, 
+ * Strategy / Policy (Behavioral) pattern with dependency injection.
+
+	The OO design principles we are learning in this lab are summarized as follows:
+	•	Use loose coupling between modules related to each other.
+		o	Use interfaces or abstraction for implementing dependencies between modules.
+		o	Program to an interface and not an implementation.
+	•	Identify the parts of your program that vary and separate them from what stays the same.
+	•	Use composition / aggregation over inheritance
+		o	Prefer Has-A relationship (composition / aggregation) over Is-A relationship (Inheritance)
+	•	Use run-time behavior injection (using interfaces for dependency injection) for 
+		accomplishing flexibility in dealing with changing requirements.
+	•	Each code module should be open for extension, but closed for modification (Open/Close principle)
+	
+	OO design patterns are used to address / solve common problems faced 
+	in Object-Oriented Programming.
+
+ * For demonstrating the Factory pattern, we use a number of interfaces and classes for 
+ * tracking which data structure class a student should take based on student's major and level.
+ * 
+ * For demonstrating the Strategy / Policy pattern, we use a number of interfaces and classes for 
+ * tracking the graduation path changes for students based on student's major and level.
  * */
 
 class Lab6 {
