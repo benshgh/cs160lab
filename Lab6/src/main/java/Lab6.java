@@ -4,8 +4,8 @@ import java.util.*;
  * Lab 6 - Basic OO Design Principles & Patterns 
  * 
  * In this Lab, we will learn some of the OO design principles to accomplish the 
- * above-mentioned objectives and demonstrate those design principles by introducing 
- * two basic OO Design Patterns – Factory (Creational) pattern, 
+ * objectives listed in Lab 6 instructions and demonstrate those design principles 
+ * by introducing two basic OO Design Patterns – Factory (Creational) pattern, 
  * Strategy / Policy (Behavioral) pattern with dependency injection.
 
 	The OO design principles we are learning in this lab are summarized as follows:
