@@ -154,7 +154,7 @@ class Lab6 {
 					sLevel = "freshman";
 					break;
 				case sophomore:
-					sLevel = "freshman";
+					sLevel = "sophomore";
 					break;
 				case junior:
 					sLevel = "junior";
