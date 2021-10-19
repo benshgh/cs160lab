@@ -3,6 +3,8 @@ import java.util.*;
 /*
  * Lab 6 - Basic OO Design Principles & Patterns 
  * 
+ * Patterns: Factory, Strategy  
+ * 
  * In this Lab, we will learn some of the OO design principles to accomplish the 
  * objectives listed in Lab 6 instructions and demonstrate those design principles 
  * by introducing two basic OO Design Patterns – Factory (Creational) pattern, 
@@ -54,24 +56,19 @@ class Lab6 {
 	    cs210,
 	    cs496
 	}
-
-	public interface IStudentStatus {
-		StudentLevel GetStudentLevel();
-		StudentMajor GetStudentMajor();
-	}
 	
 	public interface ICourse {
 		String GetCourseName();
-	}
-	
-	// Data Structure interface that every data structure course needs to implement
-	public interface IDataStructure extends ICourse 
-	{
 		Date OfferedFrom();
 		Date Ended();
 		
 		List<String> GetCoveredTopics();
 	    List<String> GetPrerequisites();
+	}
+	
+	// Data Structure interface that every data structure course needs to implement
+	public interface IDataStructure extends ICourse 
+	{
 	    List<String> GetCoursesUsingDataStructures();
 	}
 	
@@ -130,24 +127,143 @@ class Lab6 {
 	    }
 	}
 	
-	public class Student implements IStudentStatus, IGraduationPath {
+	/**
+	* A factory that creates Course objects based on CourseType.
+	* Created Objects are of IDataStructure
+	*/
+	public class CSCourseFactory
+	{
+	    public ICourse GetDataStructureCourse(CourseType type)
+	    {
+	        switch (type)
+	        {
+	            case cs310:
+	                return new CS310();
+	            case cs210:
+	                return new CS210();
+	            case cs496:
+	                return new CS496();
+	            default:
+	                throw new UnsupportedOperationException();
+	        }
+	    }
+	    
+	    public ICourse GetDataStructureCourse(IStudentStatus status)
+	    {
+	    	// Non Computer Science major students will only be offered 
+	    	// with CS496 data structure class
+	    	if(status.GetStudentMajor() != StudentMajor.computersci) {
+	    		return new CS496();
+	    	}
+	    	
+	    	// For Computer Science major students, based on their current student level,
+	    	// return the data structure course that were offered to them 
+	        switch (status.GetStudentLevel())
+	        {
+	            case junior:
+	                return new CS310();
+	            case freshman:
+	            case sophomore:
+	                return new CS210();
+	            default:
+	                throw new UnsupportedOperationException();
+	        }
+	        
+	        // TODO: change above implementation to return Data Structure instance 
+	        //		 based on a combination of student major and level
+	        //		 and write test code in main method to test.
+	    }
+	}
+	
+	public class MajorInfo {
+		
+		private StudentMajor major;
+		
+		public MajorInfo(StudentMajor m) {
+			major = m;
+		}
+		
+		public StudentMajor getMajor() {
+			return major;
+		}
+		
+		@Override
+		public String toString() {
+			switch(major) {
+				case computersci:
+					return "computersci";
+					
+				case computereng:
+					return "computereng";
+					
+				case biology:
+					return "biology";
+					
+				case math:
+					return "math";
+					
+				case politicalsci:
+					return "politicalsci";
+			}
+			
+			return "";
+		}
+	}
+	
+	// Student interfaces
+	public interface IStudentStatus {
+		StudentLevel GetStudentLevel();
+		StudentMajor GetStudentMajor();
+	}
+	
+	public interface IGraduationPath {
+		// Set course path for each required learning category 
+		void SetGEPathBehavior(ILearningPathBehavior lpb);
+		void SetLowerDivisionPathBehavior(ILearningPathBehavior lpb);
+		void SetUpperDivisionPathBehavior(ILearningPathBehavior lpb);
+		void SetMathPathBehavior(ILearningPathBehavior lpb);
+		void SetMiscPathBehavior(ILearningPathBehavior lpb);
+		
+		// Fulfill learning paths for graduation
+		void FulfillGEPath();
+		void FulfillLowerDivisionPath();
+		void FulfillUpperDivisionPath();
+		void FulfillMathPath();
+		void FulfillMiscPath();
+	}
+	
+	public class Student implements IStudentStatus, 
+									IGraduationPath{
 		private StudentLevel s_Level;
 		private StudentMajor s_Major;
+		
+		//private ArrayList<ICourse> s_courses;  //for future uses
+		private ArrayList<MajorInfo> s_majors; //for future uses, a student could have multiple majors
+		
 		private ILearningPathBehavior gePath = null;
 		private ILearningPathBehavior lowerDivisionPath = null;
 		private ILearningPathBehavior upperDivisionPath = null;
 		private ILearningPathBehavior mathPath = null;
 		private ILearningPathBehavior miscPath = null;
 				
+		// Constructor - initialize with Student Level and Major 
 		public Student(StudentLevel l, StudentMajor m) {
 			s_Level = l;
 			s_Major = m;
+			
+			s_majors = new ArrayList<MajorInfo>(); //for future uses
+			s_majors.add(new MajorInfo(m)); //for future uses
+		}
+		
+		//for future uses
+		public void AddMajor(StudentMajor m) {
+			if(s_majors != null) 
+				s_majors.add(new MajorInfo(m));
 		}
 		
 		@Override
 		public String toString() {
 			String sLevel = "";
-			String sMajor = "";
 			
 			switch(s_Level) {
 				case freshman:
@@ -163,24 +279,10 @@ class Lab6 {
 					sLevel = "senior";
 			}
 			
-			switch(s_Major) {
-				case computersci:
-					sMajor = "computersci";
-					break;
-				case computereng:
-					sMajor = "computereng";
-					break;
-				case biology:
-					sMajor = "biology";
-					break;
-				case math:
-					sMajor = "math";
-					break;
-				case politicalsci:
-					sMajor = "politicalsci";
-			}
+			StringBuilder sb = new StringBuilder("");
+			s_majors.forEach(m -> sb.append(m.toString() + " "));
 			
-			return "Major = " + sMajor + ", Level = " + sLevel;
+			return "Level = " + sLevel + ", Major/s = " + sb.toString();
 		}
 		
 		@Override
@@ -219,6 +321,37 @@ class Lab6 {
 			miscPath = lpb;
 		}
 		
+		// Fulfill learning paths for graduation
+		@Override
+		public void FulfillGEPath() 
+		{
+			// Complete the GE learning path based on the GE path behavior
+		}
+				
+		@Override
+		public void FulfillLowerDivisionPath() 
+		{
+			// Complete the Lower Division learning path based on the Lower division path behavior
+		}
+		
+		@Override
+		public void FulfillUpperDivisionPath() 
+		{
+			// Complete the Upper Division learning path based on the Upper division path behavior
+		}
+		
+		@Override
+		public void FulfillMathPath() 
+		{
+			// Complete the Math learning path based on the Math path behavior
+		}
+		
+		@Override
+		public void FulfillMiscPath() 
+		{
+			// Complete the Misc learning path based on the Misc path behavior
+		}
+		
 		public void GraduationPath() {
 			IRegistrar r = new Registrar();
 			
@@ -230,10 +363,10 @@ class Lab6 {
 				System.out.println("GE - " + gePath.GetPathBehavior());
 			if(lowerDivisionPath != null)
 				System.out.println("Lower Division - " + lowerDivisionPath.GetPathBehavior());
-			if(upperDivisionPath != null)
-				System.out.println("Upper Division - " + upperDivisionPath.GetPathBehavior());
 			if(mathPath != null)
 				System.out.println("Math - " + mathPath.GetPathBehavior());
+			if(upperDivisionPath != null)
+				System.out.println("Upper Division - " + upperDivisionPath.GetPathBehavior());
 			if(miscPath != null)
 				System.out.println("Miscellaneous - " + miscPath.GetPathBehavior());
 		}
@@ -244,21 +377,6 @@ class Lab6 {
 		String GetPathBehavior();
 	}
 	
-	public interface IRegistrar {
-		// Set graduation path (strategy) based on student major and level
-		// Set course path for each required learning category 
-		void SetGraduationPath(IStudentStatus s_status); 
-	}
-	
-	public interface IGraduationPath {
-		// Set course path for each required learning category 
-		void SetGEPathBehavior(ILearningPathBehavior lpb);
-		void SetLowerDivisionPathBehavior(ILearningPathBehavior lpb);
-		void SetUpperDivisionPathBehavior(ILearningPathBehavior lpb);
-		void SetMathPathBehavior(ILearningPathBehavior lpb);
-		void SetMiscPathBehavior(ILearningPathBehavior lpb);
-	}
-
 	public class LearningPathBehaviorBase {
 		public String behavior;
 		
@@ -306,6 +424,12 @@ class Lab6 {
 			behavior = pb;
 		}
 	}	
+	
+	public interface IRegistrar {
+		// Set graduation path (strategy) based on student major and level
+		// Set course path for each required learning category 
+		void SetGraduationPath(IStudentStatus s_status); 
+	}
 	
 	public class Registrar implements IRegistrar {
 		// Set graduation path (strategy) based on student major and level
@@ -356,55 +480,6 @@ class Lab6 {
 				
 			}
 		}
-	}
-
-	
-	/**
-	* A factory that creates Course objects based on CourseType.
-	* Created Objects are of IDataStructure
-	*/
-	public class CSCourseFactory
-	{
-	    public IDataStructure GetDataStructureCourse(CourseType type)
-	    {
-	        switch (type)
-	        {
-	            case cs310:
-	                return new CS310();
-	            case cs210:
-	                return new CS210();
-	            case cs496:
-	                return new CS496();
-	            default:
-	                throw new UnsupportedOperationException();
-	        }
-	    }
-	    
-	    public IDataStructure GetDataStructureCourse(IStudentStatus status)
-	    {
-	    	// Non Computer Science major students will only be offered 
-	    	// with CS496 data structure class
-	    	if(status.GetStudentMajor() != StudentMajor.computersci) {
-	    		return new CS496();
-	    	}
-	    	
-	    	// For Computer Science major students, based on their current student level,
-	    	// return the data structure course that were offered to them 
-	        switch (status.GetStudentLevel())
-	        {
-	            case junior:
-	                return new CS310();
-	            case freshman:
-	            case sophomore:
-	                return new CS210();
-	            default:
-	                throw new UnsupportedOperationException();
-	        }
-	        
-	        // TODO: change above implementation to return Data Structure instance 
-	        //		 based on a combination of student major and level
-	        //		 and write test code in main method to test.
-	    }
 	}
 	
 	public static void main(String[] args) {
