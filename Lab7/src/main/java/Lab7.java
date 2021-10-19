@@ -553,8 +553,7 @@ class Lab7 {
 	    public void unsubscribe(String changeType, IRegistrarChangeListener listener) {
 	        
 	    	// TODO: implement the unsubscribe
-	    	List<IRegistrarChangeListener> students = stu_listeners.get(changeType);
-	        students.remove(listener);
+	    	
 	    }
 
 	    // Notify students of course prerequisite changes
@@ -569,10 +568,7 @@ class Lab7 {
 	     * TODO: implement the function to notify all subscribed students about a learning path change
 	     * */
 	    public void notifyLearningPathChange(LearningPathType pathType, ILearningPathBehavior lpb) {
-	        List<IRegistrarChangeListener> students = stu_listeners.get(LearningPathChange);
-	        for (IRegistrarChangeListener listener : students) {
-	            listener.LearningPathChanged(pathType, lpb);
-	        }
+	        
 	    }
 		
 		// Set graduation path (strategy) based on student major and level
