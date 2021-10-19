@@ -352,7 +352,7 @@ class Lab6 {
 			// Complete the Misc learning path based on the Misc path behavior
 		}
 		
-		public void GraduationPath() {
+		public void GetLearningPaths() {
 			IRegistrar r = new Registrar();
 			
 			r.SetGraduationPath(this);
@@ -472,7 +472,7 @@ class Lab6 {
 					// TODO: add setting the path behaviors (GE, LowerDivision, etc.) based on  
 					//       a combination of student major and level
 					
-					// Hint: create new PathBehavior classes implementing ILearningPathBehaviorimplementing  
+					// Hint: create new PathBehavior classes implementing ILearningPathBehavior
 					// and extending LearningPathBehaviorBase
                     // and set (inject) instances of those behaviors to the student
 					
@@ -560,7 +560,7 @@ class Lab6 {
 		
 		System.out.println("\n" + s1);
 		
-		s2.GraduationPath();
+		s2.GetLearningPaths();
 		 
 	}
 	
