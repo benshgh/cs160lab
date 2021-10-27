@@ -1,9 +1,5 @@
 import java.util.*;
 
-/*
- * A naive algorithm for sorting an array based on the order of another array
- * */
-
 class Lab4 {
 
 	public static class Employee implements Cloneable {
