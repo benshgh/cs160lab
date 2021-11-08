@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  * 
  
  * 
- * Follow the TODO comments in Lab9.java for your coding exercises and 
+ * Follow the TODO comments in Lab9.java and Lab9Test.java for your coding exercises and 
  * reflections as part of your submission for this lab.
  * 
  ***/
