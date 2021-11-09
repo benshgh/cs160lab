@@ -14,23 +14,6 @@ public class MajorInfo {
 
   @Override
   public String toString() {
-    switch (major) {
-      case computersci:
-        return "computersci";
-
-      case computereng:
-        return "computereng";
-
-      case biology:
-        return "biology";
-
-      case math:
-        return "math";
-
-      case politicalsci:
-        return "politicalsci";
-    }
-
-    return "";
+    return major.toString();
   }
 }
