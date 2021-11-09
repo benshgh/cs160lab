@@ -43,26 +43,11 @@ public class Student implements IStudentStatus,
 
   @Override
   public String toString() {
-    String sLevel = "";
-
-    switch (studentLevel) {
-      case freshman:
-        sLevel = "freshman";
-        break;
-      case sophomore:
-        sLevel = "sophomore";
-        break;
-      case junior:
-        sLevel = "junior";
-        break;
-      case senior:
-        sLevel = "senior";
-    }
-
+    
     StringBuilder sb = new StringBuilder();
     studentMajors.forEach(m -> sb.append(m.toString()).append(" "));
 
-    return "Level = " + sLevel + ", Major/s = " + sb;
+    return "Level = " + studentLevel + ", Major/s = " + sb;
   }
 
   /**
