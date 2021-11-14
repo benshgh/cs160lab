@@ -149,7 +149,7 @@ public class Lab9Test {
     public void after() {
         // This method will be executed once after each test execution
     }
-    
+   
 	@Test
 	public void testPrintoutStudentEnrollmentStats() {
 		
@@ -171,7 +171,7 @@ public class Lab9Test {
 		 *         Number of Students with computersci major enrolled in CS210 is: 3
 		 *         Number of Students with computereng major enrolled in CS210 is: 2
 		 *         .....
-		 *         Number of Students with computersci major enrolled in CS530 is: 6
+		 *         Number of Students with math major enrolled in CS530 is: 6
 		 *         .....
 		 *         
 		 *      3) Use stream foreach to print out number of students of each combination 
