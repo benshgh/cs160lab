@@ -15,12 +15,12 @@ import org.mockito.Mock;
 
 public class Lab9Test {
 
-	static final int NUMOFLEVELS = 4;
-	static final int NUMOFMAJORS = 5;
+	static final int NUMOFLEVELS = Lab9.StudentLevel.values().length;
+	static final int NUMOFMAJORS = Lab9.StudentMajor.values().length;
 	
 	static final int NUMOFSTUDENTS = 100; 
 
-	static final int NUMOFLEARNINGPATHS = 5;
+	static final int NUMOFLEARNINGPATHS = Lab9.LearningPathType.values().length;
 	static final int MAXUNITSFORALEARNINGPATH = 20;
 	
 	static Lab9.Registrar regis = null;
