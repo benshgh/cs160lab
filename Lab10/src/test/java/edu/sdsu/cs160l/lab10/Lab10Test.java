@@ -243,7 +243,7 @@ public class Lab10Test {
 
 
 	@Test
-	public void testSortingStudentUnitsInCourse() {
+	public void testSortingStudentUnitsInLearningPaths() {
 
 		List<StudentUnits> stuu = regis.getStudentUnits(LearningPathType.upperdivisionpath);
 		
