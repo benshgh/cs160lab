@@ -189,24 +189,7 @@ class Lab6 {
 		
 		@Override
 		public String toString() {
-			switch(major) {
-				case computersci:
-					return "computersci";
-					
-				case computereng:
-					return "computereng";
-					
-				case biology:
-					return "biology";
-					
-				case math:
-					return "math";
-					
-				case politicalsci:
-					return "politicalsci";
-			}
-			
-			return "";
+			return major.toString();
 		}
 	}
 	
@@ -263,26 +246,11 @@ class Lab6 {
 		
 		@Override
 		public String toString() {
-			String sLevel = "";
-			
-			switch(s_Level) {
-				case freshman:
-					sLevel = "freshman";
-					break;
-				case sophomore:
-					sLevel = "sophomore";
-					break;
-				case junior:
-					sLevel = "junior";
-					break;
-				case senior:
-					sLevel = "senior";
-			}
 			
 			StringBuilder sb = new StringBuilder("");
 			s_majors.forEach(m -> sb.append(m.toString() + " "));
 			
-			return "Level = " + sLevel + ", Major/s = " + sb.toString();
+			return "Level = " + s_Level + ", Major/s = " + sb.toString();
 		}
 		
 		@Override
